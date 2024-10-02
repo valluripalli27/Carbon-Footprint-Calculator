@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Food Items</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+            text-align: center;
+        }
+        #food-section {
+            background: url('/Users/saitarunmattaparthi/Desktop/Business analyst /food.jpg') no-repeat center center fixed;
+            background-size: cover;
+            padding: 20px;
+            color: #fff;
+            height: 100vh; /* Full height */
+        }
+        .button {
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .hidden {
+            display: none;
+        }
+        .slider-label {
+            display: inline-block;
+            margin-top: 10px;
+        }
+        /* New styles for bold black text */
+        strong {
+            font-weight: bold;
+            color: black; /* Change color to black */
+        }
+        .calories-display {
+            font-weight: bold;
+            color: black; /* Change color to black */
+        }
+    </style>
+    <script>
+        function toggleInput(inputId) {
+            const inputDiv = document.getElementById(inputId);
+            inputDiv.classList.toggle('hidden');
+        }
+
+        function updateCalories(value, displayId, category) {
+            const caloriesDisplay = document.getElementById(displayId);
+            let calories = 0;
+
+            switch (category) {
+                case 'vegetarian':
+                    switch (value) {
+                        case 'never':
+                            calories = 0;
+                            break;
+                        case 'infrequently':
+                            calories = 150; // Example calorie count
+                            break;
+                        case 'occasionally':
+                            calories = 300; // Example calorie count
+                            break;
+                        case 'often':
+                            calories = 450; // Example calorie count
+                            break;
+                        case 'very-often':
+                            calories = 600; // Example calorie count
+                            break;
+                    }
+                    break;
+                case 'nonvegetarian':
+                    switch (value) {
+                        case 'never':
+                            calories = 0;
+                            break;
+                        case 'infrequently':
+                            calories = 250; // Example calorie count
+                            break;
+                        case 'occasionally':
+                            calories = 500; // Example calorie count
+                            break;
+                        case 'often':
+                            calories = 750; // Example calorie count
+                            break;
+                        case 'very-often':
+                            calories = 1000; // Example calorie count
+                            break;
+                    }
+                    break;
+                case 'fruits':
+                    switch (value) {
+                        case 'never':
+                            calories = 0;
+                            break;
+                        case 'infrequently':
+                            calories = 100; // Example calorie count
+                            break;
+                        case 'occasionally':
+                            calories = 200; // Example calorie count
+                            break;
+                        case 'often':
+                            calories = 300; // Example calorie count
+                            break;
+                        case 'very-often':
+                            calories = 400; // Example calorie count
+                            break;
+                    }
+                    break;
+                case 'vegetables':
+                    switch (value) {
+                        case 'never':
+                            calories = 0;
+                            break;
+                        case 'infrequently':
+                            calories = 50; // Example calorie count
+                            break;
+                        case 'occasionally':
+                            calories = 100; // Example calorie count
+                            break;
+                        case 'often':
+                            calories = 150; // Example calorie count
+                            break;
+                        case 'very-often':
+                            calories = 200; // Example calorie count
+                            break;
+                    }
+                    break;
+                case 'drinks':
+                    switch (value) {
+                        case 'never':
+                            calories = 0;
+                            break;
+                        case 'infrequently':
+                            calories = 80; // Example calorie count
+                            break;
+                        case 'occasionally':
+                            calories = 160; // Example calorie count
+                            break;
+                        case 'often':
+                            calories = 240; // Example calorie count
+                            break;
+                        case 'very-often':
+                            calories = 320; // Example calorie count
+                            break;
+                    }
+                    break;
+                case 'dairy':
+                    switch (value) {
+                        case 'never':
+                            calories = 0;
+                            break;
+                        case 'infrequently':
+                            calories = 120; // Example calorie count
+                            break;
+                        case 'occasionally':
+                            calories = 240; // Example calorie count
+                            break;
+                        case 'often':
+                            calories = 360; // Example calorie count
+                            break;
+                        case 'very-often':
+                            calories = 480; // Example calorie count
+                            break;
+                    }
+                    break;
+            }
+
+            caloriesDisplay.innerText = 'Calories: ' + calories;
+        }
+
+        function saveFoodData() {
+            let meat = document.getElementById('meatConsumption').value;
+            let vegetables = document.getElementById('vegetableConsumption').value;
+
+            // Validate inputs
+            if (meat === '' || vegetables === '') {
+                alert('Please enter both values.');
+                return;
+            }
+
+            // Example carbon footprint calculation (replace with actual logic)
+            let foodFootprint = (meat * 5) + (vegetables * 2); // Meat has higher carbon impact
+
+            // Store the food footprint in localStorage
+            localStorage.setItem('foodFootprint', foodFootprint);
+            alert('Food data saved! You can now calculate your carbon footprint.');
+        }
+    </script>
+</head>
+<body>
+
+    <section id="food-section">
+        <h2>Choose Your Food Items 🍽️</h2>
+        <div>
+            <strong>Vegetarian:</strong>
+            <button class="button" onclick="toggleInput('vegetarian-input')">Select Frequency</button>
+            <div id="vegetarian-input" class="hidden">
+                <label class="slider-label">Frequency of Consumption:</label>
+                <select onchange="updateCalories(this.value, 'vegetarian-calories', 'vegetarian')">
+                    <option value="">Select Frequency</option>
+                    <option value="never">Never</option>
+                    <option value="infrequently">Infrequently</option>
+                    <option value="occasionally">Occasionally</option>
+                    <option value="often">Often</option>
+                    <option value="very-often">Very Often</option>
+                </select>
+                <div id="vegetarian-calories" class="calories-display">Calories: 0</div>
+            </div>
+        
+            <strong>Non-Vegetarian:</strong>
+            <button class="button" onclick="toggleInput('nonvegetarian-input')">Select Frequency</button>
+            <div id="nonvegetarian-input" class="hidden">
+                <label class="slider-label">Frequency of Consumption:</label>
+                <select onchange="updateCalories(this.value, 'nonvegetarian-calories', 'nonvegetarian')">
+                    <option value="">Select Frequency</option>
+                    <option value="never">Never</option>
+                    <option value="infrequently">Infrequently</option>
+                    <option value="occasionally">Occasionally</option>
+                    <option value="often">Often</option>
+                    <option value="very-often">Very Often</option>
+                </select>
+                <div id="nonvegetarian-calories" class="calories-display">Calories: 0</div>
+            </div>
+        
+            <strong>Fruits:</strong>
+            <button class="button" onclick="toggleInput('fruits-input')">Select Frequency</button>
+            <div id="fruits-input" class="hidden">
+                <label class="slider-label">Frequency of Consumption:</label>
+                <select onchange="updateCalories(this.value, 'fruits-calories', 'fruits')">
+                    <option value="">Select Frequency</option>
+                    <option value="never">Never</option>
+                    <option value="infrequently">Infrequently</option>
+                    <option value="occasionally">Occasionally</option>
+                    <option value="often">Often</option>
+                    <option value="very-often">Very Often</option>
+                </select>
+                <div id="fruits-calories" class="calories-display">Calories: 0</div>
+            </div>
+        
+            <strong>Vegetables:</strong>
+            <button class="button" onclick="toggleInput('vegetables-input')">Select Frequency</button>
+            <div id="vegetables-input" class="hidden">
+                <label class="slider-label">Frequency of Consumption:</label>
+                <select onchange="updateCalories(this.value, 'vegetables-calories', 'vegetables')">
+                    <option value="">Select Frequency</option>
+                    <option value="never">Never</option>
+                    <option value="infrequently">Infrequently</option>
+                    <option value="occasionally">Occasionally</option>
+                    <option value="often">Often</option>
+                    <option value="very-often">Very Often</option>
+                </select>
+                <div id="vegetables-calories" class="calories-display">Calories: 0</div>
+            </div>
+        
+            <strong>Drinks:</strong>
+            <button class="button" onclick="toggleInput('drinks-input')">Select Frequency</button>
+            <div id="drinks-input" class="hidden">
+                <label class="slider-label">Frequency of Consumption:</label>
+                <select onchange="updateCalories(this.value, 'drinks-calories', 'drinks')">
+                    <option value="">Select Frequency</option>
+                    <option value="never">Never</option>
+                    <option value="infrequently">Infrequently</option>
+                    <option value="occasionally">Occasionally</option>
+                    <option value="often">Often</option>
+                    <option value="very-often">Very Often</option>
+                </select>
+                <div id="drinks-calories" class="calories-display">Calories: 0</div>
+            </div>
+        
+            <strong>Dairy:</strong>
+            <button class="button" onclick="toggleInput('dairy-input')">Select Frequency</button>
+            <div id="dairy-input" class="hidden">
+                <label class="slider-label">Frequency of Consumption:</label>
+                <select onchange="updateCalories(this.value, 'dairy-calories', 'dairy')">
+                    <option value="">Select Frequency</option>
+                    <option value="never">Never</option>
+                    <option value="infrequently">Infrequently</option>
+                    <option value="occasionally">Occasionally</option>
+                    <option value="often">Often</option>
+                    <option value="very-often">Very Often</option>
+                </select>
+                <div id="dairy-calories" class="calories-display">Calories: 0</div>
+            </div>
+        </div>
+
+        <h3>Input Your Consumption (Optional)</h3>
+        <label for="meatConsumption">Meat Consumption (in grams):</label>
+        <input type="number" id="meatConsumption" placeholder="Enter grams of meat">
+        
+        <label for="vegetableConsumption">Vegetable Consumption (in grams):</label>
+        <input type="number" id="vegetableConsumption" placeholder="Enter grams of vegetables">
+
+        <button class="button" onclick="saveFoodData()">Save Food Data</button>
+    </section>
+</body>
+</html>

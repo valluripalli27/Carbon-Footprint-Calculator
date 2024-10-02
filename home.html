@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Energy Usage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: url('/Users/saitarunmattaparthi/Desktop/Business analyst /home.jpg') no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            color: black;
+        }
+        h1 {
+            font-weight: bold;
+            color: black;
+        }
+        .button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #1a71ce;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block; /* Ensures labels are on separate lines */
+        }
+        input {
+            margin-bottom: 10px; /* Add spacing below inputs */
+            padding: 8px;
+            width: 200px; /* Set a width for the inputs */
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Home Energy Use ⚡</h1>
+    
+    <form id="homeForm">
+        <label for="electricityUsage">Electricity Usage (kWh/month):</label>
+        <input type="number" id="electricityUsage" name="electricityUsage" min="0" required><br>
+
+        <label for="gasUsage">Gas Usage (m³/month):</label>
+        <input type="number" id="gasUsage" name="gasUsage" min="0" required><br>
+
+        <button type="button" class="button" onclick="saveHomeData()">Save Home Data</button>
+    </form>
+
+    <script>
+        function saveHomeData() {
+            let electricity = document.getElementById('electricityUsage').value;
+            let gas = document.getElementById('gasUsage').value;
+
+            // Example carbon footprint calculation
+            let homeFootprint = (electricity * 0.4) + (gas * 2);
+
+            // Store the home footprint in localStorage
+            localStorage.setItem('homeFootprint', homeFootprint);
+            alert('Home data saved!');
+        }
+    </script>
+</body>
+</html>

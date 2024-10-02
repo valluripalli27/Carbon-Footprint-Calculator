@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Footprint Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('/Users/saitarunmattaparthi/Desktop/Business analyst /co.webp') no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            color: white;
+        }
+        h1 {
+            font-size: 48px;
+            margin-top: 50px;
+        }
+        .button {
+            display: block;
+            margin: 20px auto;
+            padding: 15px 30px;
+            background-color: #1a71ce;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Carbon Footprint Calculator</h1>
+
+    <button class="button" onclick="location.href='/Users/saitarunmattaparthi/Desktop/Business analyst /food.html'">🍽️ Food</button>
+    <button class="button" onclick="location.href='/Users/saitarunmattaparthi/Desktop/Business analyst /family.html'">👨‍👩‍👧‍👦 Family</button>
+    <button class="button" onclick="location.href='/Users/saitarunmattaparthi/Desktop/Business analyst /home.html'">🏠 Home</button>
+    <button class="button" onclick="location.href='/Users/saitarunmattaparthi/Desktop/Business analyst /transport.html'">🚗 Transportation</button>
+    <button class="button" onclick="calculateCarbonFootprint()">Calculate Carbon Footprint</button>
+
+    <div id="result"></div>
+
+    <script>
+        function calculateCarbonFootprint() {
+            // Retrieve values from localStorage
+            let foodFootprint = localStorage.getItem('foodFootprint') || 0;
+            let familyFootprint = localStorage.getItem('familyFootprint') || 0;
+            let homeFootprint = localStorage.getItem('homeFootprint') || 0;
+            let transportFootprint = localStorage.getItem('transportFootprint') || 0;
+
+            // Convert values to numbers for calculation
+            foodFootprint = Number(foodFootprint);
+            familyFootprint = Number(familyFootprint);
+            homeFootprint = Number(homeFootprint);
+            transportFootprint = Number(transportFootprint);
+
+            // Calculate total footprint
+            let totalFootprint = foodFootprint + familyFootprint + homeFootprint + transportFootprint;
+
+            // Display the result
+            document.getElementById('result').innerHTML = 
+                `<h2>Total Carbon Footprint: ${totalFootprint} kg CO2</h2>`;
+        }
+    </script>
+</body>
+</html>

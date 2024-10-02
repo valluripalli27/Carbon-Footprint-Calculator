@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Footprint Calculator</title>
+    <style>
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Carbon Footprint Calculator</h1>
+    <p>Select a category to input relevant details:</p>
+    <button class="button" onclick="location.href='/Users/saitarunmattaparthi/Desktop/Business analyst /food.html'">🍽️ Food</button>
+    <button class="button" onclick="location.href='/Users/saitarunmattaparthi/Desktop/Business analyst /family.html'">👨‍👩‍👧‍👦 Family</button>
+    <button class="button" onclick="location.href='/Users/saitarunmattaparthi/Desktop/Business analyst /home.html'">🏠 Home</button>
+    <button class="button" onclick="calculateCarbonFootprint()">Calculate Carbon Footprint</button>
+
+    <div id="result"></div>
+
+    <script>
+        function calculateCarbonFootprint() {
+            // Retrieve values from localStorage
+            let foodFootprint = localStorage.getItem('foodFootprint') || 0;
+            let familyFootprint = localStorage.getItem('familyFootprint') || 0;
+            let homeFootprint = localStorage.getItem('homeFootprint') || 0;
+
+            // Convert values to numbers for calculation
+            foodFootprint = Number(foodFootprint);
+            familyFootprint = Number(familyFootprint);
+            homeFootprint = Number(homeFootprint);
+
+            // Calculate total footprint
+            let totalFootprint = foodFootprint + familyFootprint + homeFootprint;
+
+            // Display the result
+            document.getElementById('result').innerHTML = 
+                `<h2>Total Carbon Footprint: ${totalFootprint} kg CO2</h2>`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transportation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: url('/Users/saitarunmattaparthi/Desktop/Business analyst /transport.webp') no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            color: black;
+        }
+        h1 {
+            font-weight: bold;
+            color: black;
+        }
+        .button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #1a71ce;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block; /* Ensures labels are on separate lines */
+        }
+        input, select {
+            margin-bottom: 10px; /* Add spacing below inputs */
+            padding: 8px;
+            width: 200px; /* Set a width for the inputs */
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Transportation Information 🚗✈️</h1>
+    <p>Select the mode of transport and enter relevant details.</p>
+
+    <div class="transport-form hidden" id="flight-form">
+        <h3>Flight Trips ✈️</h3>
+        <label for="numFlights">Number of trips: <input type="number" id="numFlights" /></label>
+    </div>
+
+    <div class="transport-form hidden" id="car-form">
+        <h3>Car Information 🚗</h3>
+        <label for="carMileage">Mileage (miles): <input type="number" id="carMileage" /></label><br>
+        <label for="vehicleSelect">Choose Vehicle:</label>
+        <select id="vehicleSelect">
+            <option value="">Select a Vehicle</option>
+            <option>2024 AUDI A4</option>
+            <option>2024 BMW 3 Series</option>
+            <option>2024 CHEVROLET Camaro</option>
+            <option>2024 FORD Mustang</option>
+            <option>2024 HONDA Accord</option>
+            <option>2024 HONDA Civic</option>
+            <option>2024 JEEP Wrangler</option>
+            <option>2024 NISSAN Altima</option>
+            <option>2024 TOYOTA Camry</option>
+            <option>2024 TESLA Model 3</option>
+            <option>2024 SUBARU Outback</option>
+            <option>2024 VOLKSWAGEN Jetta</option>
+            <option>2024 MITSUBISHI Outlander</option>
+            <option>2024 KIA Soul</option>
+            <option>2024 MAZDA CX-5</option>
+            <option>2024 DODGE Charger</option>
+            <option>2024 MERCEDES-BENZ C-Class</option>
+            <option>2024 HYUNDAI Sonata</option>
+            <option>2024 VOLVO S60</option>
+            <option>2024 LEXUS ES</option>
+            <option>2024 FORD F-150</option>
+            <option>2024 RAM 1500</option>
+            <option>2024 CHEVROLET Silverado</option>
+            <option>2024 TOYOTA RAV4</option>
+            <option>2024 HONDA CR-V</option>
+            <option>2024 SUBARU Forester</option>
+            <option>2024 NISSAN Rogue</option>
+            <option>2024 JEEP Grand Cherokee</option>
+        </select><br>
+        <label for="carEfficiency">Or enter efficiency: <input type="number" id="carEfficiency" placeholder="g/km" /></label>
+    </div>
+
+    <div class="transport-form hidden" id="motorbike-form">
+        <h3>Motorbike Information 🏍️</h3>
+        <label for="motorbikeMileage">Mileage (miles): <input type="number" id="motorbikeMileage" /></label>
+    </div>
+
+    <div class="transport-form hidden" id="bus-form">
+        <h3>Bus Information 🚌</h3>
+        <label for="busDistance">Distance traveled (miles): <input type="number" id="busDistance" /></label>
+    </div>
+
+    <div class="transport-form hidden" id="rail-form">
+        <h3>Rail Information 🚆</h3>
+        <label for="railDistance">Distance traveled (miles): <input type="number" id="railDistance" /></label>
+    </div>
+
+    <h1>Transportation Carbon Footprint</h1>
+    <form id="transportForm">
+        <label for="carDistance">Car Distance (km/month):</label>
+        <input type="number" id="carDistance" name="carDistance" min="0"><br><br>
+        
+        <label for="publicTransportDistance">Public Transport Distance (km/month):</label>
+        <input type="number" id="publicTransportDistance" name="publicTransportDistance" min="0"><br><br>
+
+        <button type="button" class="button" onclick="saveTransportData()">Save Transport Data</button>
+    </form>
+
+    <script>
+        function saveTransportData() {
+            let carDistance = document.getElementById('carDistance').value;
+            let publicTransportDistance = document.getElementById('publicTransportDistance').value;
+
+            // Example carbon footprint calculation
+            let transportFootprint = (carDistance * 0.25) + (publicTransportDistance * 0.1);
+
+            // Store the transport footprint in localStorage
+            localStorage.setItem('transportFootprint', transportFootprint);
+            alert('Transportation data saved!');
+        }
+    </script>
+</body>
+</html>
